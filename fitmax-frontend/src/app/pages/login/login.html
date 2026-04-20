@@ -1,0 +1,50 @@
+<section class="auth-page">
+  <div class="auth-topbar">
+    <div class="brand" routerLink="/">FITMAX</div>
+
+    <div class="language-switcher">
+      <button type="button" (click)="changeLanguage('en')" [class.active]="currentLang === 'en'">EN</button>
+      <button type="button" (click)="changeLanguage('ru')" [class.active]="currentLang === 'ru'">RU</button>
+      <button type="button" (click)="changeLanguage('kz')" [class.active]="currentLang === 'kz'">KZ</button>
+    </div>
+  </div>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="mini-logo">▲</div>
+      <h1>{{ texts.title }}</h1>
+      <p class="subtitle">{{ texts.subtitle }}</p>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>{{ texts.email }}</label>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            [placeholder]="texts.email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>{{ texts.password }}</label>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            [placeholder]="texts.password"
+          />
+        </div>
+
+        <a class="forgot-link" href="#">{{ texts.forgot }}</a>
+
+        <button type="submit" class="submit-btn">{{ texts.login }}</button>
+      </form>
+
+      <p class="bottom-text">
+        {{ texts.noAccount }}
+        <a routerLink="/register">{{ texts.signUp }}</a>
+      </p>
+    </div>
+  </div>
+</section>

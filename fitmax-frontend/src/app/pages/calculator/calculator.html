@@ -1,0 +1,132 @@
+<div class="calc-page">
+  <app-navbar></app-navbar>
+
+  <div class="page-wrapper">
+    <div class="section-header">
+      <h1>{{ t.title }}</h1>
+      <p>{{ t.subtitle }}</p>
+    </div>
+
+    @if (!result) {
+      <div class="form-card">
+        <!-- Gender -->
+        <div class="form-group">
+          <label>{{ t.gender }}</label>
+          <div class="toggle-group">
+            <button [class.active]="gender === 'male'" (click)="gender = 'male'">{{ t.male }}</button>
+            <button [class.active]="gender === 'female'" (click)="gender = 'female'">{{ t.female }}</button>
+          </div>
+        </div>
+
+        <!-- Age / Weight / Height -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>{{ t.age }}</label>
+            <div class="input-row">
+              <input type="number" [(ngModel)]="age" min="10" max="100" />
+              <span class="unit">{{ t.years }}</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>{{ t.weight }}</label>
+            <div class="input-row">
+              <input type="number" [(ngModel)]="weight" min="30" max="300" />
+              <span class="unit">{{ t.kg }}</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>{{ t.height }}</label>
+            <div class="input-row">
+              <input type="number" [(ngModel)]="height" min="100" max="230" />
+              <span class="unit">{{ t.cm }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="form-group">
+          <label>{{ t.activity }}</label>
+          <select [(ngModel)]="activity">
+            <option value="sedentary">{{ t.sedentary }}</option>
+            <option value="light">{{ t.light }}</option>
+            <option value="moderate">{{ t.moderate }}</option>
+            <option value="active">{{ t.active }}</option>
+            <option value="very_active">{{ t.very_active }}</option>
+          </select>
+        </div>
+
+        <!-- Goal -->
+        <div class="form-group">
+          <label>{{ t.goal }}</label>
+          <div class="goal-grid">
+            <div class="goal-card" [class.selected]="goal === 'loss'" (click)="goal = 'loss'">
+              <span>🔥</span><span>{{ t.loss }}</span>
+            </div>
+            <div class="goal-card" [class.selected]="goal === 'maintain'" (click)="goal = 'maintain'">
+              <span>⚖️</span><span>{{ t.maintain }}</span>
+            </div>
+            <div class="goal-card" [class.selected]="goal === 'gain'" (click)="goal = 'gain'">
+              <span>💪</span><span>{{ t.gain }}</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="calc-btn" (click)="calculate()">{{ t.calculate }}</button>
+      </div>
+    }
+
+    @if (result) {
+      <div class="result-section">
+        <div class="result-cards">
+          <div class="result-card accent">
+            <span class="result-icon">🎯</span>
+            <div class="result-val">{{ result.target }}</div>
+            <div class="result-label">{{ t.target }}</div>
+            <div class="result-unit">{{ t.kcal }}</div>
+          </div>
+          <div class="result-card">
+            <span class="result-icon">🔥</span>
+            <div class="result-val">{{ result.bmr }}</div>
+            <div class="result-label">{{ t.bmr }}</div>
+            <div class="result-unit">{{ t.kcal }}</div>
+          </div>
+          <div class="result-card">
+            <span class="result-icon">⚡</span>
+            <div class="result-val">{{ result.tdee }}</div>
+            <div class="result-label">{{ t.tdee }}</div>
+            <div class="result-unit">{{ t.kcal }}</div>
+          </div>
+        </div>
+
+        <div class="macros-card">
+          <h2>{{ t.macros }}</h2>
+          <div class="macros-grid">
+            <div class="macro">
+              <div class="macro-bar protein-bar" [style.width.%]="30"></div>
+              <div class="macro-info">
+                <span class="macro-val">{{ result.protein }}{{ t.grams }}</span>
+                <span class="macro-name">{{ t.protein }}</span>
+              </div>
+            </div>
+            <div class="macro">
+              <div class="macro-bar carbs-bar" [style.width.%]="45"></div>
+              <div class="macro-info">
+                <span class="macro-val">{{ result.carbs }}{{ t.grams }}</span>
+                <span class="macro-name">{{ t.carbs }}</span>
+              </div>
+            </div>
+            <div class="macro">
+              <div class="macro-bar fat-bar" [style.width.%]="25"></div>
+              <div class="macro-info">
+                <span class="macro-val">{{ result.fat }}{{ t.grams }}</span>
+                <span class="macro-name">{{ t.fat }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="reset-btn" (click)="reset()">← {{ t.recalculate }}</button>
+      </div>
+    }
+  </div>
+</div>

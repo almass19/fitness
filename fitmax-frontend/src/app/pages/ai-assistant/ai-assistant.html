@@ -1,0 +1,59 @@
+<div class="ai-page">
+  <app-navbar></app-navbar>
+
+  <div class="chat-wrapper">
+    <div class="chat-header">
+      <div class="chat-avatar">🤖</div>
+      <div>
+        <h1>{{ t.title }}</h1>
+        <p>{{ t.subtitle }}</p>
+      </div>
+    </div>
+
+    <div class="messages-container">
+      <!-- Welcome message -->
+      @if (messages.length === 0) {
+        <div class="message assistant-message">
+          <div class="avatar">🤖</div>
+          <div class="bubble">{{ t.welcome }}</div>
+        </div>
+      }
+
+      @for (msg of messages; track $index) {
+        <div class="message" [class.user-message]="msg.role === 'user'" [class.assistant-message]="msg.role === 'assistant'">
+          @if (msg.role === 'assistant') {
+            <div class="avatar">🤖</div>
+          }
+          <div class="bubble">{{ msg.content }}</div>
+          @if (msg.role === 'user') {
+            <div class="avatar user-avatar">👤</div>
+          }
+        </div>
+      }
+
+      @if (loading) {
+        <div class="message assistant-message">
+          <div class="avatar">🤖</div>
+          <div class="bubble thinking">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      }
+
+      <div #messagesEnd></div>
+    </div>
+
+    <div class="input-area">
+      <textarea
+        [(ngModel)]="input"
+        (keydown)="onEnter($event)"
+        [placeholder]="t.placeholder"
+        rows="1"
+        [disabled]="loading"
+      ></textarea>
+      <button class="send-btn" (click)="sendMessage()" [disabled]="loading || !input.trim()">
+        {{ loading ? '...' : '↑' }}
+      </button>
+    </div>
+  </div>
+</div>

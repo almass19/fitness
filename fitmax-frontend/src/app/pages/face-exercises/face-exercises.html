@@ -1,0 +1,33 @@
+<div class="face-page">
+  <app-navbar></app-navbar>
+
+  <div class="page-wrapper">
+    <div class="section-header">
+      <h1>{{ t.title }}</h1>
+      <p>{{ t.subtitle }}</p>
+    </div>
+
+    <div class="exercise-grid">
+      @for (ex of t.exercises; track ex.name) {
+        <div class="exercise-card">
+          <div class="card-top">
+            <span class="icon">{{ ex.icon }}</span>
+            <span class="target-badge">{{ ex.target }}</span>
+          </div>
+          <h3>{{ ex.name }}</h3>
+          <p class="description">{{ ex.description }}</p>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-val">{{ ex.duration }}</span>
+              <span class="stat-label">{{ t.duration }}</span>
+            </div>
+            <div class="stat">
+              <span class="stat-val">{{ ex.reps }}</span>
+              <span class="stat-label">{{ t.reps }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

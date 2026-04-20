@@ -1,0 +1,103 @@
+<section class="details-page">
+
+  <app-navbar></app-navbar>
+
+  <div class="page-wrapper">
+
+    @if (!session) {
+      <div class="empty-state">
+        <p>{{ t.noData }}</p>
+        <button class="back-btn" (click)="goBack()">{{ t.back }}</button>
+      </div>
+    }
+
+    @if (session) {
+      <!-- Header -->
+      <div class="details-header">
+        <button class="back-btn" (click)="goBack()">{{ t.back }}</button>
+        <div>
+          <h1>{{ t.title }}</h1>
+          <p class="date">{{ formatDate(session.date) }}</p>
+        </div>
+      </div>
+
+      <!-- Stats card -->
+      <div class="stats-card">
+        <div class="stat-item">
+          <span class="stat-icon">🎯</span>
+          <div>
+            <div class="stat-label">{{ t.goal }}</div>
+            <div class="stat-value">{{ goalLabel }}</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">{{ session.location === 'home' ? '🏠' : '🏋️' }}</span>
+          <div>
+            <div class="stat-label">{{ t.location }}</div>
+            <div class="stat-value">{{ session.location === 'home' ? t.home : t.gym }}</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">⚡</span>
+          <div>
+            <div class="stat-label">{{ t.level }}</div>
+            <div class="stat-value capitalize">{{ levelLabel(session.userData.fitnessLevel) }}</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">📏</span>
+          <div>
+            <div class="stat-label">{{ t.bmi }}</div>
+            <div class="stat-value">{{ bmi }}</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">⚖️</span>
+          <div>
+            <div class="stat-label">{{ t.weight }}</div>
+            <div class="stat-value">{{ session.userData.weight }} kg</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">📐</span>
+          <div>
+            <div class="stat-label">{{ t.height }}</div>
+            <div class="stat-value">{{ session.userData.height }} cm</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      @if (session.summary) {
+        <div class="summary-card">
+          <h2>{{ t.planOverview }}</h2>
+          <p>{{ session.summary }}</p>
+        </div>
+      }
+
+      <!-- Exercises -->
+      <h2 class="exercises-title">{{ t.exercises }} ({{ session.exercises.length }})</h2>
+
+      <div class="exercises-list">
+        @for (ex of session.exercises; track ex.name; let i = $index) {
+          <div class="exercise-row">
+            <div class="exercise-number">{{ i + 1 }}</div>
+            <div class="exercise-content">
+              <div class="exercise-top">
+                <h3>{{ ex.name }}</h3>
+                <span class="muscle-tag">{{ ex.muscleGroup }}</span>
+              </div>
+              <p class="exercise-desc">{{ ex.description }}</p>
+              <div class="exercise-pills">
+                <span class="pill">{{ ex.sets }} {{ t.sets }}</span>
+                <span class="pill">{{ ex.reps }} {{ t.reps }}</span>
+                <span class="pill rest">{{ t.rest }}: {{ ex.rest }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+</section>

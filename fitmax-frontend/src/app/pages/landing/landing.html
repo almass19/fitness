@@ -1,0 +1,26 @@
+<section class="landing">
+  <div class="overlay">
+    <div class="top-bar">
+      <div class="menu-links">
+        <a routerLink="/">{{ texts.home }}</a>
+        <a routerLink="/workouts">{{ texts.workouts }}</a>
+        <a routerLink="/ai">{{ texts.aiAssistant }}</a>
+        <a routerLink="/login">{{ texts.login }}</a>
+      </div>
+
+      <div class="language-switcher">
+        <button type="button" (click)="changeLanguage('en')" [class.active]="currentLang === 'en'">EN</button>
+        <button type="button" (click)="changeLanguage('ru')" [class.active]="currentLang === 'ru'">RU</button>
+        <button type="button" (click)="changeLanguage('kz')" [class.active]="currentLang === 'kz'">KZ</button>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-content">
+        <h1>FITMAX</h1>
+        <p>{{ texts.stayFit }}</p>
+        <button type="button" routerLink="/register">{{ texts.getStarted }}</button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,124 @@
+<div class="home-page">
+
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
+  <nav class="home-nav">
+    <div class="nav-brand">FITMAX</div>
+    <div class="nav-links">
+      <a routerLink="/workouts">{{ t.nav.workouts }}</a>
+      <a routerLink="/ai">{{ t.nav.ai }}</a>
+      <a routerLink="/calculator">{{ t.nav.calculator }}</a>
+      <a routerLink="/face-exercises">{{ t.nav.face }}</a>
+      <a routerLink="/profile">{{ t.nav.profile }}</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button [class.active]="currentLang==='en'" (click)="changeLanguage('en')">EN</button>
+        <button [class.active]="currentLang==='ru'" (click)="changeLanguage('ru')">RU</button>
+        <button [class.active]="currentLang==='kz'" (click)="changeLanguage('kz')">KZ</button>
+      </div>
+      <button class="logout-btn" (click)="logout()">{{ t.logout }}</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════ HERO SLIDER ══════════════════ -->
+  <section class="hero-slider">
+    @for (slide of slides; track slide.image; let i = $index) {
+      <div class="slide" [class.active]="currentSlide === i"
+           [style.background-image]="'url(' + slide.image + ')'">
+      </div>
+    }
+
+    <!-- Dots -->
+    <div class="slider-dots">
+      @for (slide of slides; track slide.image; let i = $index) {
+        <button class="dot" [class.active]="currentSlide === i" (click)="goToSlide(i)"></button>
+      }
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint" (click)="scrollToAbout()">
+      <span>{{ t.hero.scroll }}</span>
+      <div class="chevron">↓</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ ABOUT ══════════════════ -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-left">
+        <span class="section-tag">{{ t.about.tag }}</span>
+        <h2 class="about-title">{{ t.about.title }}</h2>
+        <p class="about-desc">{{ t.about.desc }}</p>
+        <button class="cta-btn" routerLink="/workouts">{{ t.about.cta }}</button>
+      </div>
+      <div class="about-right">
+        <div class="stat-card">
+          <span class="stat-num">{{ t.about.stat1 }}</span>
+          <span class="stat-label">{{ t.about.label1 }}</span>
+        </div>
+        <div class="stat-card accent">
+          <span class="stat-num">{{ t.about.stat2 }}</span>
+          <span class="stat-label">{{ t.about.label2 }}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">{{ t.about.stat3 }}</span>
+          <span class="stat-label">{{ t.about.label3 }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ REVIEWS ══════════════════ -->
+  <section class="reviews-section">
+    <div class="section-header">
+      <span class="section-tag dark">{{ t.reviews.tag }}</span>
+      <h2>{{ t.reviews.title }}</h2>
+    </div>
+    <div class="reviews-grid">
+      @for (r of t.reviews.items; track r.name) {
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"{{ r.text }}"</p>
+          <div class="reviewer">
+            <div class="reviewer-avatar">{{ r.name[0] }}</div>
+            <div>
+              <div class="reviewer-name">{{ r.name }}</div>
+              <div class="reviewer-role">{{ r.role }}</div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════ UPDATES ══════════════════ -->
+  <section class="updates-section">
+    <div class="section-header">
+      <span class="section-tag">{{ t.updates.tag }}</span>
+      <h2>{{ t.updates.title }}</h2>
+    </div>
+    <div class="updates-list">
+      @for (u of t.updates.items; track u.title) {
+        <div class="update-card">
+          <div class="update-meta">
+            <span class="update-date">{{ u.date }}</span>
+            <span class="update-tag">{{ u.tag }}</span>
+          </div>
+          <h3 class="update-title">{{ u.title }}</h3>
+          <p class="update-desc">{{ u.desc }}</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer class="home-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">FITMAX</div>
+      <p class="footer-tagline">{{ t.footer.tagline }}</p>
+      <p class="footer-copy">{{ t.footer.copy }}</p>
+    </div>
+  </footer>
+
+</div>
+

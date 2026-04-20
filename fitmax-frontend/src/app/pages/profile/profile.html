@@ -1,0 +1,96 @@
+<section class="profile-page">
+  <app-navbar></app-navbar>
+
+  <div class="profile-wrapper">
+    <div class="profile-card">
+      <div class="profile-hero">
+        <div class="avatar-box">
+          <div class="avatar-circle">
+            {{ profileInitials }}
+          </div>
+        </div>
+
+        <div class="hero-content">
+          <div class="card-header">
+            <div>
+              <h1>{{ texts.title }}</h1>
+              <p class="profile-subtitle">@{{ user?.username || 'user' }}</p>
+            </div>
+
+            @if (!loading && !isEditing) {
+              <button class="edit-btn" (click)="startEdit()">{{ texts.edit }}</button>
+            }
+          </div>
+        </div>
+      </div>
+
+      @if (loading) {
+        <p class="loading">{{ texts.loading }}</p>
+      }
+
+      @if (!loading && user && !isEditing) {
+        <div class="profile-info">
+          <div class="info-row">
+            <span>{{ texts.username }}</span>
+            <b>{{ user.username }}</b>
+          </div>
+
+          <div class="info-row">
+            <span>{{ texts.email }}</span>
+            <b>{{ user.email }}</b>
+          </div>
+
+          <div class="info-row">
+            <span>{{ texts.firstName }}</span>
+            <b>{{ user.first_name || '-' }}</b>
+          </div>
+
+          <div class="info-row">
+            <span>{{ texts.lastName }}</span>
+            <b>{{ user.last_name || '-' }}</b>
+          </div>
+        </div>
+      }
+
+      @if (!loading && user && isEditing) {
+        <div class="edit-form">
+          <div class="form-group">
+            <label>{{ texts.username }}</label>
+            <input type="text" [(ngModel)]="username" />
+          </div>
+
+          <div class="form-group">
+            <label>{{ texts.email }}</label>
+            <input type="email" [(ngModel)]="email" />
+          </div>
+
+          <div class="form-group">
+            <label>{{ texts.firstName }}</label>
+            <input type="text" [(ngModel)]="firstName" />
+          </div>
+
+          <div class="form-group">
+            <label>{{ texts.lastName }}</label>
+            <input type="text" [(ngModel)]="lastName" />
+          </div>
+
+          <div class="form-actions">
+            <button class="save-btn" (click)="saveProfile()" [disabled]="saving">
+              {{ saving ? texts.saving : texts.save }}
+            </button>
+
+            <button class="cancel-btn" (click)="cancelEdit()" [disabled]="saving">
+              {{ texts.cancel }}
+            </button>
+          </div>
+        </div>
+      }
+      @if (isEditing) {
+        <p class="edit-mode">Editing mode</p>
+      }
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+    </div>
+  </div>
+</section>

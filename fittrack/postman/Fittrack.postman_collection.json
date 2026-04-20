@@ -1,0 +1,263 @@
+{
+  "info": {
+    "_postman_id": "89494df9-02a0-4db6-aa14-d4f0a5063953",
+    "name": "Fittrack",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53621594",
+    "_collection_link": "https://go.postman.co/collection/53621594-89494df9-02a0-4db6-aa14-d4f0a5063953?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Fittrack",
+      "item": [
+        {
+          "name": "Regustration",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"baha\",\r\n  \"email\": \"baha@test.com\",\r\n  \"password\": \"12345678\",\r\n  \"password2\": \"12345678\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/auth/register/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "auth",
+                "register",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"baha\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/auth/login/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "auth",
+                "login",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTA4MTQyLCJpYXQiOjE3NzYxMDQ1NDIsImp0aSI6IjE2ZWUyZjA0NzZiMDQwNGRiMGU5OTBmMTQ2MmMyZmYzIiwidXNlcl9pZCI6IjIifQ.BxPOoFcnKVdwQgMw04cAK8JiP1u52CNNB7TSMoWQBaY",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/auth/profile/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "auth",
+                "profile",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Training Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTA4MTQyLCJpYXQiOjE3NzYxMDQ1NDIsImp0aSI6IjE2ZWUyZjA0NzZiMDQwNGRiMGU5OTBmMTQ2MmMyZmYzIiwidXNlcl9pZCI6IjIifQ.BxPOoFcnKVdwQgMw04cAK8JiP1u52CNNB7TSMoWQBaY",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Morning Yoga\",\r\n  \"category\": \"yoga\",\r\n  \"instructor\": \"Aruzhan\",\r\n  \"description\": \"Light yoga class\",\r\n  \"schedule\": \"2026-04-20T10:00:00Z\",\r\n  \"duration_minutes\": 60,\r\n  \"capacity\": 20\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/classes/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "classes",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List of trainings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTA4MTQyLCJpYXQiOjE3NzYxMDQ1NDIsImp0aSI6IjE2ZWUyZjA0NzZiMDQwNGRiMGU5OTBmMTQ2MmMyZmYzIiwidXNlcl9pZCI6IjIifQ.BxPOoFcnKVdwQgMw04cAK8JiP1u52CNNB7TSMoWQBaY",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/classes/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "classes",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Check booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTA4MTQyLCJpYXQiOjE3NzYxMDQ1NDIsImp0aSI6IjE2ZWUyZjA0NzZiMDQwNGRiMGU5OTBmMTQ2MmMyZmYzIiwidXNlcl9pZCI6IjIifQ.BxPOoFcnKVdwQgMw04cAK8JiP1u52CNNB7TSMoWQBaY",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"workout_class_id\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/bookings/create/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "bookings",
+                "create",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Check memberships",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc2MTA4MTQyLCJpYXQiOjE3NzYxMDQ1NDIsImp0aSI6IjE2ZWUyZjA0NzZiMDQwNGRiMGU5OTBmMTQ2MmMyZmYzIiwidXNlcl9pZCI6IjIifQ.BxPOoFcnKVdwQgMw04cAK8JiP1u52CNNB7TSMoWQBaY",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"plan_id\": 1,\r\n  \"status\": \"active\",\r\n  \"end_date\": \"2026-05-20\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/memberships/",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "memberships",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

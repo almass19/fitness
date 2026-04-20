@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <div class="nav-brand" routerLink="/home">FITMAX</div>
+
+  <div class="nav-links">
+    <a routerLink="/workouts" routerLinkActive="active">{{ t.workouts }}</a>
+    <a routerLink="/ai" routerLinkActive="active">{{ t.ai }}</a>
+    <a routerLink="/calculator" routerLinkActive="active">{{ t.calculator }}</a>
+    <a routerLink="/face-exercises" routerLinkActive="active">{{ t.face }}</a>
+    <a routerLink="/profile" routerLinkActive="active">{{ t.profile }}</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="lang-switch">
+      <button [class.active]="currentLang==='en'" (click)="setLang('en')">EN</button>
+      <button [class.active]="currentLang==='ru'" (click)="setLang('ru')">RU</button>
+      <button [class.active]="currentLang==='kz'" (click)="setLang('kz')">KZ</button>
+    </div>
+    <button class="logout-btn" (click)="logout()">{{ t.logout }}</button>
+  </div>
+</nav>
